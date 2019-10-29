@@ -1,0 +1,24 @@
+.radio-group {
+  width: 100%;
+  margin: 15px 0 40px 0;
+}
+
+.radio-label {
+  font-size: 1.3rem;
+  margin: 25px 0;
+}
+
+.radio-buttons {
+  margin: 0 20px;
+}
+
+@media only screen and (max-width: 500px) {
+  .radio-group {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .radio-buttons {
+    margin: 0 7px;
+  }
+}

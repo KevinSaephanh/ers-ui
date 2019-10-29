@@ -1,0 +1,65 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #263238;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  padding-top: 25px;
+}
+
+.form-button {
+  width: 170px;
+  height: 50px;
+  margin: 10px auto !important;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  background: #263238;
+}
+
+.form-button:hover {
+  background: blueviolet;
+  transition: 0.5s all ease-in;
+}
+
+.content {
+  padding: 25px 0;
+}
+
+.content a {
+  text-decoration: none;
+  color: blueviolet;
+}
+
+.content a:hover {
+  color: skyblue;
+  transition: 0.5s all ease-in;
+}
+
+.content form {
+  width: 500px;
+  margin: 35px auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
+}
+
+.content form input {
+  font-size: 1.1rem;
+}
+
+.content .form-field2 {
+  margin: 15px 0;
+}
+
+@media only screen and(max-width: 500px) {
+}

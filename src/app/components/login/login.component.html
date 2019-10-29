@@ -1,0 +1,19 @@
+<div class="content">
+  <h1>Login</h1>
+
+  <form [formGroup]="service.loginForm" (ngSubmit)="login()">
+    <mat-form-field class="form-field2">
+      <input type="text" formControlName="username" matInput placeholder="Username" required [(ngModel)]="username">
+    </mat-form-field>
+    <mat-form-field class="form-field2">
+      <input type="password" formControlName="password" matInput placeholder="Password" name="password" required
+        [(ngModel)]="password">
+    </mat-form-field>
+    <button mat-button class="form-button">Login</button>
+  </form>
+
+  <span>Don't have an account? Click
+    <strong><a routerLink="/signup">HERE</a></strong>
+    to signup!
+  </span>
+</div>
