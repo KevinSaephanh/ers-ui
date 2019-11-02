@@ -12,12 +12,12 @@ export class ReimbursementFormComponent implements OnInit {
   reimbTypes: string[] = ["LODGING", "TRAVEL", "FOOD", "OTHER"];
   reimbType: string;
 
-  constructor(private service: UserService) {}
+  constructor() {}
 
   ngOnInit() {}
 
-  changeReimbType = event => {
-    this.reimbType = event.value;
+  changeReimbType = e => {
+    this.reimbType = e.value;
   };
 
   onSubmit = () => {

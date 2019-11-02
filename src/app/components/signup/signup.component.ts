@@ -12,10 +12,16 @@ export class SignupComponent implements OnInit {
   email: string;
   firstname: string;
   lastname: string;
+  roles = ["Employee", "Manager"];
+  role: string;
 
-  constructor(private service: UserService) {}
+  constructor() {}
 
   ngOnInit() {}
+
+  changeRole = e => {
+    this.role = e.value;
+  };
 
   signup = () => {
     console.log(this.username);

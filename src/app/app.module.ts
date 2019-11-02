@@ -18,6 +18,7 @@ import { UserService } from "./services/user.service";
 
 // Material Module
 import { MaterialModule } from "./material/material.module";
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MaterialModule } from "./material/material.module";
     SignupComponent,
     LoginComponent,
     HomeComponent,
-    ReimbursementFormComponent
+    ReimbursementFormComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

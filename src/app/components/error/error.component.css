@@ -1,0 +1,13 @@
+.errorPage {
+  height: calc(100vh - 60px);
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  background-image: url("../../../assets/404.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
