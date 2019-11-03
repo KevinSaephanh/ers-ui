@@ -11,14 +11,15 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { LoginComponent } from "./components/login/login.component";
 import { HomeComponent } from "./components/home/home.component";
-import { ReimbursementFormComponent } from "./components/reimbursement-form/reimbursement-form.component";
-
-// Services
-import { UserService } from "./services/user.service";
 
 // Material Module
 import { MaterialModule } from "./material/material.module";
-import { ErrorComponent } from './components/error/error.component';
+import { ErrorComponent } from "./components/error/error.component";
+
+import { StoreModule } from "@ngrx/store";
+import { RootReducer } from "./store/reducers/root-reducer";
+import { ReimbursementComponent } from "./components/reimbursement/reimbursement.component";
+import { AddReimbursementComponent } from "./components/add-reimbursement/add-reimbursement.component";
 
 @NgModule({
   declarations: [
@@ -27,8 +28,9 @@ import { ErrorComponent } from './components/error/error.component';
     SignupComponent,
     LoginComponent,
     HomeComponent,
-    ReimbursementFormComponent,
-    ErrorComponent
+    ErrorComponent,
+    ReimbursementComponent,
+    AddReimbursementComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +38,10 @@ import { ErrorComponent } from './components/error/error.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    StoreModule.forRoot(RootReducer)
   ],
-  providers: [UserService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

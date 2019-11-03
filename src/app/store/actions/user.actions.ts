@@ -1,21 +1,14 @@
-import { Action } from "@ngrx/store";
-import { User } from "../../models/User";
+import { UserActionTypes } from "./user.action-types";
+import { ActionParent } from "./action-parent";
 
-export enum UserActionTypes {
-  CREATE_USER = "[USER] Create User",
-  GET_USER = "[USER] Get User"
+export class CreateUserAction implements ActionParent {
+  type = UserActionTypes.CREATE;
+
+  constructor(public payload: any) {}
 }
 
-export class CreateUserAction implements Action {
-  readonly type = UserActionTypes.CREATE_USER;
+export class GetUserAction implements ActionParent {
+  type = UserActionTypes.GET;
 
-  constructor(public payload: User) {}
+  constructor(public payload: any) {}
 }
-
-export class GetUserAction implements Action {
-  readonly type = UserActionTypes.GET_USER;
-
-  constructor(public payload: User) {}
-}
-
-export type UserAction = CreateUserAction | GetUserAction;

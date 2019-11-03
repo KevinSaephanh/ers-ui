@@ -1,16 +1,10 @@
-import { UserAction, UserActionTypes } from "../actions/user.actions";
-
-const initialState = {
+const initState = {
   isAuthenticated: false,
   user: {}
 };
 
-export const UserReducer = (state = initialState, action: UserAction) => {
+export const UserReducer = (state = initState, action: any) => {
   switch (action.type) {
-    case UserActionTypes.GET_USER:
-      return state;
-    case UserActionTypes.CREATE_USER:
-      return state;
     default:
       return state;
   }
