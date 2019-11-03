@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { User } from "src/app/models/User";
 
 @Component({
   selector: "app-signup",
@@ -6,23 +7,14 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./signup.component.css"]
 })
 export class SignupComponent implements OnInit {
-  username: string;
-  password: string;
-  email: string;
-  firstname: string;
-  lastname: string;
+  user: User = new User();
   roles = ["Employee", "Manager"];
-  role: string;
 
   constructor() {}
 
   ngOnInit() {}
 
-  changeRole = e => {
-    this.role = e.value;
-  };
-
   signup = () => {
-    console.log(this.username);
+    console.log(this.user.username);
   };
 }

@@ -3,7 +3,8 @@ import { ReimbursementActionTypes } from "../actions/reimbursement.action-types"
 
 const initState = {
   reimbursements: [{}],
-  reimbursement: {}
+  reimbursement: {},
+  error: ""
 };
 
 export const ReimbursementReducer = (
