@@ -1,4 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import { User } from "src/app/models/User";
+import { Store } from "@ngrx/store";
+import { AppState, selectAuthState } from "src/app/store";
+import { Login } from "src/app/store/actions/auth.actions";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-login",
@@ -6,17 +11,26 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  username: string;
-  password: string;
+  user: User = new User();
+  getState: Observable<any>;
+  error: string | null;
 
-  constructor() {}
+  constructor(private store: Store<AppState>) {
+    this.getState = this.store.select(selectAuthState);
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getState.subscribe(state => {
+      this.error = state.error;
+    });
+  }
 
-  login = () => {
-    console.log(this.username);
-    console.log(this.password);
-
-    window.location.href = "/reimbursement";
-  };
+  login() {
+    const payload = {
+      username: this.user.username,
+      password: this.user.password
+    };
+    console.log(payload);
+    this.store.dispatch(new Login(payload));
+  }
 }

@@ -11,15 +11,21 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { LoginComponent } from "./components/login/login.component";
 import { HomeComponent } from "./components/home/home.component";
+import { ReimbursementComponent } from "./components/reimbursement/reimbursement.component";
+import { AddReimbursementComponent } from "./components/add-reimbursement/add-reimbursement.component";
 
 // Material Module
 import { MaterialModule } from "./material/material.module";
 import { ErrorComponent } from "./components/error/error.component";
 
 import { StoreModule } from "@ngrx/store";
-import { RootReducer } from "./store/reducers/root-reducer";
-import { ReimbursementComponent } from "./components/reimbursement/reimbursement.component";
-import { AddReimbursementComponent } from "./components/add-reimbursement/add-reimbursement.component";
+import { HttpClientModule } from "@angular/common/http";
+import { EffectsModule } from "@ngrx/effects";
+import { RootReducer } from "./store/index";
+import { AuthService } from "./services/auth.service";
+import { ReimbursementService } from "./services/reimbursement.service";
+import { AuthEffects } from "./store/effects/auth.effects";
+import { ReimbursementEffects } from "./store/effects/reimbursements.effects";
 
 @NgModule({
   declarations: [
@@ -39,9 +45,11 @@ import { AddReimbursementComponent } from "./components/add-reimbursement/add-re
     ReactiveFormsModule,
     FormsModule,
     MaterialModule,
-    StoreModule.forRoot(RootReducer)
+    HttpClientModule,
+    StoreModule.forRoot(RootReducer),
+    EffectsModule.forRoot([AuthEffects, ReimbursementEffects])
   ],
-  providers: [],
+  providers: [AuthService, ReimbursementService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
