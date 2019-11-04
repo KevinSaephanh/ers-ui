@@ -6,7 +6,14 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/catch";
 import { AuthActionTypes } from "../actions/auth.action-types";
-import { LoginSuccess, LoginFail, Login } from "../actions/auth.actions";
+import {
+  LoginSuccess,
+  LoginFail,
+  Login,
+  Signup,
+  SignupSuccess,
+  SignupFail
+} from "../actions/auth.actions";
 import { Observable, of } from "rxjs";
 import { tap } from "rxjs/operators";
 
@@ -17,6 +24,29 @@ export class AuthEffects {
     private authService: AuthService,
     private router: Router
   ) {}
+
+  // @Effect()
+  // SignUp: Observable<any> = this.actions
+  //   .ofType(AuthActionTypes.SIGNUP)
+  //   .map((action: SignUp) => action.payload)
+  //   .switchMap(payload => {
+  //     return this.authService
+  //       .signUp(payload.user)
+  //       .map(() => {
+  //         return new SignUpSuccess({});
+  //       })
+  //       .catch(error => {
+  //         return of(new SignUpFail({ error }));
+  //       });
+  //   });
+
+  @Effect({ dispatch: false })
+  SignUpSuccess: Observable<any> = this.actions.pipe(
+    ofType(AuthActionTypes.SIGNUP_SUCCESS),
+    tap(() => {
+      this.router.navigateByUrl("/login");
+    })
+  );
 
   @Effect({ dispatch: false })
   SignUpFail: Observable<any> = this.actions.pipe(
@@ -33,8 +63,8 @@ export class AuthEffects {
         .map(() => {
           return new LoginSuccess({});
         })
-        .catch(err => {
-          return of(new LoginFail({ error: err }));
+        .catch(error => {
+          return of(new LoginFail({ error }));
         });
     });
 
@@ -42,8 +72,9 @@ export class AuthEffects {
   LogInSuccess: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.LOGIN_SUCCESS),
     tap(user => {
+      console.log(user.payload.token);
       localStorage.setItem("token", user.payload.token);
-      this.router.navigateByUrl(`/dashboard/${user.payload.id}`);
+      //this.router.navigateByUrl(`/dashboard/${user.payload.id}`);
     })
   );
 

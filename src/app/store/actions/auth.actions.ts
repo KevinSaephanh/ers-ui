@@ -3,7 +3,16 @@ import { Action } from "@ngrx/store";
 
 export class Signup implements Action {
   readonly type = AuthActionTypes.SIGNUP;
-  constructor(public payload: any) {}
+  constructor(public payload: any) {
+    console.log("Hello");
+  }
+}
+
+export class SignupSuccess implements Action {
+  readonly type = AuthActionTypes.SIGNUP_SUCCESS;
+  constructor(public payload: any) {
+    console.log("Hello Again");
+  }
 }
 
 export class SignupFail implements Action {
@@ -30,8 +39,8 @@ export class Logout implements Action {
   readonly type = AuthActionTypes.LOGOUT;
 }
 
-export class GetUser implements Action {
-  readonly type = AuthActionTypes.GET;
+export class LoadUser implements Action {
+  readonly type = AuthActionTypes.LOAD_USER;
   constructor(public payload: any) {}
 }
 
@@ -42,4 +51,4 @@ export type All =
   | LoginSuccess
   | LoginFail
   | Logout
-  | GetUser;
+  | LoadUser;

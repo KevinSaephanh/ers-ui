@@ -18,7 +18,7 @@
       <input matInput placeholder="Last Name" [(ngModel)]="user.lastname" name="lastname" required>
     </mat-form-field>
     <mat-radio-group class="radio-group" name="role" [(ngModel)]="user.role" required>
-      <mat-radio-button class=" radio-btn" *ngFor="let role of roles" [value]="role" (change)="onRadioChange($event)">
+      <mat-radio-button class=" radio-btn" *ngFor="let role of roles; let i = index" [value]="i + 1">
         {{role}}
       </mat-radio-button>
     </mat-radio-group>

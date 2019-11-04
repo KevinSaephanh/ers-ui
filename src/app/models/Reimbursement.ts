@@ -4,8 +4,8 @@ export class Reimbursement {
   resolved: Date | null;
   description: string | null;
   receipt: any | null;
-  author: string;
-  resolver: string | null;
-  type: string;
-  status: string;
+  author: string | number;
+  resolver: string | number | null;
+  type: string | number;
+  status: string | number;
 }

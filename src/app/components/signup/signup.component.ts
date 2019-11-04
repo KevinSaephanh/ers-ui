@@ -26,10 +26,6 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  onRadioChange(value) {
-    this.user.role = value;
-  }
-
   signup(): void {
     console.log(this.user);
     this.store.dispatch(new Signup(this.user));

@@ -43,6 +43,14 @@ export function AuthReducer(state = initState, action: All): AuthState {
     case AuthActionTypes.LOGOUT: {
       return initState;
     }
+    case AuthActionTypes.LOAD_USER: {
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload,
+        error: null
+      };
+    }
     default:
       return state;
   }
