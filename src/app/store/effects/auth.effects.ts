@@ -16,6 +16,7 @@ import {
 } from "../actions/auth.actions";
 import { Observable, of } from "rxjs";
 import { tap } from "rxjs/operators";
+import * as jwt_decode from "jwt-decode";
 
 @Injectable()
 export class AuthEffects {
@@ -25,20 +26,20 @@ export class AuthEffects {
     private router: Router
   ) {}
 
-  // @Effect()
-  // SignUp: Observable<any> = this.actions
-  //   .ofType(AuthActionTypes.SIGNUP)
-  //   .map((action: SignUp) => action.payload)
-  //   .switchMap(payload => {
-  //     return this.authService
-  //       .signUp(payload.user)
-  //       .map(() => {
-  //         return new SignUpSuccess({});
-  //       })
-  //       .catch(error => {
-  //         return of(new SignUpFail({ error }));
-  //       });
-  //   });
+  @Effect()
+  SignUp: Observable<any> = this.actions
+    .ofType(AuthActionTypes.SIGNUP)
+    .map((action: Signup) => action.payload)
+    .switchMap(payload => {
+      return this.authService
+        .signUp(payload.user)
+        .map(() => {
+          return new SignupSuccess({});
+        })
+        .catch(error => {
+          return of(new SignupFail({ error }));
+        });
+    });
 
   @Effect({ dispatch: false })
   SignUpSuccess: Observable<any> = this.actions.pipe(
@@ -60,8 +61,8 @@ export class AuthEffects {
     .switchMap(payload => {
       return this.authService
         .login(payload.username, payload.password)
-        .map(() => {
-          return new LoginSuccess({});
+        .map(user => {
+          return new LoginSuccess({ token: user });
         })
         .catch(error => {
           return of(new LoginFail({ error }));
@@ -72,9 +73,10 @@ export class AuthEffects {
   LogInSuccess: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.LOGIN_SUCCESS),
     tap(user => {
-      console.log(user.payload.token);
-      localStorage.setItem("token", user.payload.token);
-      //this.router.navigateByUrl(`/dashboard/${user.payload.id}`);
+      const token = jwt_decode(user.payload.token);
+      console.log(token);
+      localStorage.setItem("token", token);
+      this.router.navigateByUrl(`/dashboard/${token.id}`);
     })
   );
 

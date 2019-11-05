@@ -3,9 +3,7 @@ import { Action } from "@ngrx/store";
 
 export class Signup implements Action {
   readonly type = AuthActionTypes.SIGNUP;
-  constructor(public payload: any) {
-    console.log("Hello");
-  }
+  constructor(public payload: any) {}
 }
 
 export class SignupSuccess implements Action {
