@@ -5,9 +5,10 @@
     <!-- Spaces elements to the ends of both sides of nav -->
     <span class="space-between"></span>
 
-    <ul>
-      <li><a routerLink="/signup">SIGNUP</a></li>
-      <li><a routerLink="/login">LOGIN</a></li>
+    <ul routerLinkActive="active">
+      <li><a *ngIf="!checkIfLoggedIn()" routerLink="/signup">SIGNUP</a></li>
+      <li><a *ngIf="!checkIfLoggedIn()" routerLink="/login">LOGIN</a></li>
+      <li *ngIf="checkIfLoggedIn()"><a (click)="logout()" routerLink="/">Logout</a></li>
     </ul>
   </mat-toolbar>
 </nav>

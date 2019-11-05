@@ -9,4 +9,11 @@ export class NavbarComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  checkIfLoggedIn() {
+    if (localStorage.getItem("token")) return true;
+    return false;
+  }
+
+  logout() {}
 }
