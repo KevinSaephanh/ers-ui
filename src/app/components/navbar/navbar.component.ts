@@ -3,6 +3,7 @@ import { AppState, selectAuthState } from "src/app/store";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { Logout } from "src/app/store/actions/auth.actions";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-navbar",
@@ -12,14 +13,18 @@ import { Logout } from "src/app/store/actions/auth.actions";
 export class NavbarComponent implements OnInit {
   getState: Observable<any>;
 
-  constructor(private store: Store<AppState>) {
+  constructor(
+    private authService: AuthService,
+    private store: Store<AppState>
+  ) {
     this.getState = this.store.select(selectAuthState);
   }
 
   ngOnInit() {}
 
   checkIfLoggedIn() {
-    if (localStorage.getItem("token")) return true;
+    const authenticated = this.authService.getToken();
+    if (authenticated != null) return true;
     return false;
   }
 

@@ -26,7 +26,8 @@ import { AuthService } from "./services/auth.service";
 import { ReimbursementService } from "./services/reimbursement.service";
 import { AuthEffects } from "./store/effects/auth.effects";
 import { ReimbursementEffects } from "./store/effects/reimbursements.effects";
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { AuthGuardService } from "./services/auth-guard.service";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     StoreModule.forRoot(RootReducer),
     EffectsModule.forRoot([AuthEffects, ReimbursementEffects])
   ],
-  providers: [AuthService, ReimbursementService],
+  providers: [AuthService, ReimbursementService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,4 +1,5 @@
 export class Reimbursement {
+  id: number | null;
   amount: number;
   submitted: Date;
   resolved: Date | null;

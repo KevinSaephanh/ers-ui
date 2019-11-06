@@ -21,13 +21,13 @@ import * as jwt_decode from "jwt-decode";
 @Injectable()
 export class AuthEffects {
   constructor(
-    private actions: Actions,
+    private actions$: Actions,
     private authService: AuthService,
     private router: Router
   ) {}
 
   @Effect()
-  SignUp: Observable<any> = this.actions
+  SignUp$: Observable<any> = this.actions$
     .ofType(AuthActionTypes.SIGNUP)
     .map((action: Signup) => action.payload)
     .switchMap(payload => {
@@ -42,7 +42,7 @@ export class AuthEffects {
     });
 
   @Effect({ dispatch: false })
-  SignUpSuccess: Observable<any> = this.actions.pipe(
+  SignUpSuccess$: Observable<any> = this.actions$.pipe(
     ofType(AuthActionTypes.SIGNUP_SUCCESS),
     tap(() => {
       this.router.navigateByUrl("/login");
@@ -50,12 +50,12 @@ export class AuthEffects {
   );
 
   @Effect({ dispatch: false })
-  SignUpFail: Observable<any> = this.actions.pipe(
+  SignUpFail$: Observable<any> = this.actions$.pipe(
     ofType(AuthActionTypes.SIGNUP_FAIL)
   );
 
   @Effect()
-  Login: Observable<any> = this.actions
+  Login$: Observable<any> = this.actions$
     .ofType(AuthActionTypes.LOGIN)
     .map((action: Login) => action.payload)
     .switchMap(payload => {
@@ -70,26 +70,28 @@ export class AuthEffects {
     });
 
   @Effect({ dispatch: false })
-  LogInSuccess: Observable<any> = this.actions.pipe(
+  LogInSuccess$: Observable<any> = this.actions$.pipe(
     ofType(AuthActionTypes.LOGIN_SUCCESS),
     tap(user => {
+      // Decode jwt token and sabe in local storage
+      localStorage.setItem("token", user.payload.token);
       const token = jwt_decode(user.payload.token);
       console.log(token);
-      localStorage.setItem("token", token);
       this.router.navigateByUrl(`/dashboard/${token.id}`);
     })
   );
 
   @Effect({ dispatch: false })
-  LogInFail: Observable<any> = this.actions.pipe(
+  LogInFail$: Observable<any> = this.actions$.pipe(
     ofType(AuthActionTypes.LOGIN_FAIL)
   );
 
   @Effect({ dispatch: false })
-  public Logout: Observable<any> = this.actions.pipe(
+  Logout$: Observable<any> = this.actions$.pipe(
     ofType(AuthActionTypes.LOGOUT),
     tap(() => {
-      localStorage.removeItem("token");
+      this.authService.removeToken();
+      this.router.navigateByUrl("/login");
     })
   );
 }

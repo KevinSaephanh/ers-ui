@@ -16,6 +16,11 @@ export class GetAll implements Action {
   constructor(public payload: any) {}
 }
 
+export class GetUsersReimbs implements Action {
+  readonly type = ReimbursementActionTypes.GET_USERS_REIMBS;
+  constructor(public payload: any) {}
+}
+
 export class GetSuccess implements Action {
   readonly type = ReimbursementActionTypes.GET_SUCCESS;
   constructor(public payload: any) {}
@@ -26,4 +31,28 @@ export class GetFail implements Action {
   constructor(public payload: any) {}
 }
 
-export type All = Add | Get | GetAll | GetSuccess | GetFail;
+export class Update implements Action {
+  readonly type = ReimbursementActionTypes.UPDATE;
+  constructor(public payload: any) {}
+}
+
+export class UpdateSuccess implements Action {
+  readonly type = ReimbursementActionTypes.UPDATE_SUCCESS;
+  constructor(public payload: any) {}
+}
+
+export class UpdateFail implements Action {
+  readonly type = ReimbursementActionTypes.UPDATE_FAIL;
+  constructor(public payload: any) {}
+}
+
+export type All =
+  | Add
+  | Get
+  | GetAll
+  | GetUsersReimbs
+  | GetSuccess
+  | GetFail
+  | Update
+  | UpdateSuccess
+  | UpdateFail;

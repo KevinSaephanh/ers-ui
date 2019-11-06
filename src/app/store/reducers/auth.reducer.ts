@@ -2,9 +2,9 @@ import { AuthActionTypes } from "../actions/auth.action-types";
 import { All } from "../actions/auth.actions";
 
 export interface AuthState {
-  isAuthenticated: boolean;
-  user: {};
-  error: string | null;
+  readonly isAuthenticated: boolean;
+  readonly user: {};
+  readonly error: string | null;
 }
 
 const initState: AuthState = {
@@ -42,14 +42,6 @@ export function AuthReducer(state = initState, action: All): AuthState {
     }
     case AuthActionTypes.LOGOUT: {
       return initState;
-    }
-    case AuthActionTypes.LOAD_USER: {
-      return {
-        ...state,
-        isAuthenticated: true,
-        user: action.payload,
-        error: null
-      };
     }
     default:
       return state;

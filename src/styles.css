@@ -46,24 +46,34 @@ h1 {
 }
 
 .content form {
-  width: 500px;
+  width: 80%;
   margin: 35px auto;
   display: flex;
   flex-direction: column;
   padding: 0 15px;
 }
 
-.content form input {
+.mat-form-field {
+  width: 80% !important;
+  margin: 0 auto;
   font-size: 1.1rem;
 }
 
 .content .form-field2 {
-  margin: 15px 0;
+  margin: 25px auto;
 }
 
 .content .radio-btn {
   margin: 20px 10px 50px 10px;
 }
 
-@media only screen and(max-width: 500px) {
+@media only screen and(max-width: 600px) {
+  .content form {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    width: 90% !important;
+    font-size: 1rem;
+  }
 }

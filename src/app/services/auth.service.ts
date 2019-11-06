@@ -15,6 +15,10 @@ export class AuthService {
     return localStorage.getItem("token");
   }
 
+  removeToken(): void {
+    localStorage.removeItem("token");
+  }
+
   signUp(user: User): Observable<User> {
     const url = `${this.BASE_URL}/signup`;
     console.log(url);
