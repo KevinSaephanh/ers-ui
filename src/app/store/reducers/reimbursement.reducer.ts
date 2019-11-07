@@ -8,16 +8,21 @@ export interface ReimbState {
 
 const initState: ReimbState = {
   reimbursements: null,
-  error: ""
+  error: null
 };
 
 export const ReimbursementReducer = (state = initState, action: any) => {
   switch (action.type) {
-    case ReimbursementActionTypes.ADD:
+    case ReimbursementActionTypes.ADD_SUCCESS:
       return {
         ...state,
         reimbursements: state.reimbursements.push(action.payload),
         error: null
+      };
+    case ReimbursementActionTypes.ADD_FAIL:
+      return {
+        ...state,
+        error: action.payload
       };
     case ReimbursementActionTypes.GET_SUCCESS:
       return {
@@ -32,7 +37,13 @@ export const ReimbursementReducer = (state = initState, action: any) => {
         error: action.payload
       };
     case ReimbursementActionTypes.UPDATE_SUCCESS:
-      return state.reimbursements.filter(reimb => reimb.id !== action.id);
+      return {
+        ...state,
+        reimbursements: state.reimbursements.filter(
+          reimb => reimb.id !== action.id
+        ),
+        error: null
+      };
     case ReimbursementActionTypes.UPDATE_FAIL:
       return {
         ...state,

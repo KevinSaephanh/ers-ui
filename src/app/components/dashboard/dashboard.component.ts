@@ -7,7 +7,7 @@ import { Component, OnInit } from "@angular/core";
 })
 export class DashboardComponent implements OnInit {
   constructor() {
-    if (localStorage.getItem("token")) console.log("Good job");
+    if (localStorage.getItem("token")) console.log("You are authenticated");
   }
 
   ngOnInit() {}

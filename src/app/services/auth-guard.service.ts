@@ -20,10 +20,14 @@ export class AuthGuardService implements CanActivate {
       return false;
     }
 
-    // Check if token id matches parameter id or token role is 2 (Manager)
     const token = jwt_decode(this.authService.getToken());
+    // Check if token expired
+    const tokenExpired = this.authService.isTokenExpired(token);
+    if (tokenExpired) return false;
+
+    // Check if token id matches parameter id or token role is 2 (Manager)
     if (token.id == this.route.snapshot.paramMap.get("id") || token.role == 2)
       return true;
-    return false;
+    else return false;
   }
 }

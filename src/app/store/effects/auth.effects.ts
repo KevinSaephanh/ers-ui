@@ -73,7 +73,7 @@ export class AuthEffects {
   LogInSuccess$: Observable<any> = this.actions$.pipe(
     ofType(AuthActionTypes.LOGIN_SUCCESS),
     tap(user => {
-      // Decode jwt token and sabe in local storage
+      // Save token in local storage and decode to access id
       localStorage.setItem("token", user.payload.token);
       const token = jwt_decode(user.payload.token);
       console.log(token);

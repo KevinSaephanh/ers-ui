@@ -14,7 +14,13 @@ export class SignupComponent implements OnInit {
   user: User = new User();
   getState: Observable<any>;
   roles = ["Employee", "Manager"];
-  error: string | null;
+  error: {
+    username: string;
+    password: string;
+    email: string;
+    firstname: string;
+    lastname: string;
+  };
 
   constructor(private store: Store<AppState>) {
     this.getState = this.store.select(selectAuthState);

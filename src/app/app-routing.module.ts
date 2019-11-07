@@ -10,6 +10,7 @@ import { DashboardComponent } from "./components/dashboard/dashboard.component";
 
 // Service
 import { AuthGuardService } from "./services/auth-guard.service";
+import { ReimbursementComponent } from "./components/reimbursement/reimbursement.component";
 
 const routes: Routes = [
   { path: "signup", component: SignupComponent },
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: "dashboard/:id",
     component: DashboardComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: "reimbursements/page?=:id",
+    component: ReimbursementComponent,
     canActivate: [AuthGuardService]
   },
   { path: "", component: HomeComponent },

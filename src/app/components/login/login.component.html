@@ -2,6 +2,7 @@
   <h1>Login</h1>
 
   <form (ngSubmit)="login()">
+    <span class="error">{{error}}</span>
     <mat-form-field class="form-field2">
       <input type="text" matInput placeholder="Username" [(ngModel)]="user.username" name="username" required>
     </mat-form-field>

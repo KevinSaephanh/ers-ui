@@ -19,6 +19,15 @@ export class AuthService {
     localStorage.removeItem("token");
   }
 
+  isTokenExpired(token): boolean {
+    const date = new Date();
+    const currentTime = date.getTime();
+
+    // Check if current time is equal to/exceeds token expiration date
+    if (currentTime >= token.exp) return true;
+    else return false;
+  }
+
   signUp(user: User): Observable<User> {
     const url = `${this.BASE_URL}/signup`;
     console.log(url);
