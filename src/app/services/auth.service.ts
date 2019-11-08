@@ -11,7 +11,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  getToken() {
+  getToken(): string {
     return localStorage.getItem("token");
   }
 
@@ -29,14 +29,13 @@ export class AuthService {
   }
 
   signUp(user: User): Observable<User> {
-    const url = `${this.BASE_URL}/signup`;
-    console.log(url);
-    return this.http.post<User>(url, user);
+    return this.http.post<User>(`${this.BASE_URL}/signup`, user);
   }
 
   login(username: string, password: string): Observable<User> {
-    const url = `${this.BASE_URL}/login`;
-    console.log(url);
-    return this.http.post<User>(url, { username, password });
+    return this.http.post<User>(`${this.BASE_URL}/login`, {
+      username,
+      password
+    });
   }
 }

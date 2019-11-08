@@ -21,6 +21,15 @@ export class ReimbursementEffects {
   ) {}
 
   @Effect()
+  getUserReimbs$: Observable<any> = this.actions$
+    .ofType(ReimbursementActionTypes.GET_USERS_REIMBS)
+    .switchMap(() => {
+      return this.reimbService.getUserReimbs();
+    })
+    .map(reimbs => new GetSuccess(reimbs))
+    .catch(error => of(new GetFail(error)));
+
+  @Effect()
   getReimbs$: Observable<any> = this.actions$
     .ofType(ReimbursementActionTypes.GET_ALL)
     .switchMap(() => {
@@ -28,6 +37,16 @@ export class ReimbursementEffects {
     })
     .map(reimbs => new GetSuccess(reimbs))
     .catch(error => of(new GetFail(error)));
+
+  @Effect({ dispatch: false })
+  getSuccess$: Observable<any> = this.actions$.pipe(
+    ofType(ReimbursementActionTypes.GET_SUCCESS)
+  );
+
+  @Effect({ dispatch: false })
+  getFail$: Observable<any> = this.actions$.pipe(
+    ofType(ReimbursementActionTypes.GET_FAIL)
+  );
 
   @Effect()
   addReimb$: Observable<any> = this.actions$
@@ -42,18 +61,18 @@ export class ReimbursementEffects {
       return of(new AddFail({ error }));
     });
 
-  @Effect()
+  @Effect({ dispatch: false })
   addSuccess$: Observable<any> = this.actions$.pipe(
     ofType(ReimbursementActionTypes.ADD_SUCCESS)
   );
 
-  @Effect()
+  @Effect({ dispatch: false })
   addFail$: Observable<any> = this.actions$.pipe(
     ofType(ReimbursementActionTypes.ADD_FAIL)
   );
 
   @Effect()
-  updateReimb$: Observable<any> = this.actions$
+  update$: Observable<any> = this.actions$
     .ofType(ReimbursementActionTypes.UPDATE)
     .switchMap(payload => {
       return this.reimbService.update(payload);
@@ -64,4 +83,14 @@ export class ReimbursementEffects {
     .catch(error => {
       return of(new UpdateFail({ error }));
     });
+
+  @Effect({ dispatch: false })
+  updateSuccess$: Observable<any> = this.actions$.pipe(
+    ofType(ReimbursementActionTypes.UPDATE_SUCCESS)
+  );
+
+  @Effect({ dispatch: false })
+  updateFail$: Observable<any> = this.actions$.pipe(
+    ofType(ReimbursementActionTypes.UPDATE_FAIL)
+  );
 }

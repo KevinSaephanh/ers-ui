@@ -11,7 +11,6 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { LoginComponent } from "./components/login/login.component";
 import { HomeComponent } from "./components/home/home.component";
-import { ReimbursementComponent } from "./components/reimbursement/reimbursement.component";
 import { AddReimbursementComponent } from "./components/add-reimbursement/add-reimbursement.component";
 
 // Material Module
@@ -37,7 +36,6 @@ import { AuthGuardService } from "./services/auth-guard.service";
     LoginComponent,
     HomeComponent,
     ErrorComponent,
-    ReimbursementComponent,
     AddReimbursementComponent,
     DashboardComponent
   ],

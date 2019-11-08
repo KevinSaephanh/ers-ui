@@ -17,7 +17,7 @@
     <mat-form-field class="form-field">
       <input matInput placeholder="Last Name" [(ngModel)]="user.lastname" name="lastname" required>
     </mat-form-field>
-    <mat-radio-group class="radio-group" name="role" [(ngModel)]="user.role" required>
+    <mat-radio-group class="radio-group" name="role" [(ngModel)]="user.roleId" required>
       <mat-radio-button class=" radio-btn" *ngFor="let role of roles; let i = index" [value]="i + 1">
         {{role}}
       </mat-radio-button>

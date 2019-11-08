@@ -5,5 +5,5 @@ export class User {
   email: string | null;
   firstname: string | null;
   lastname: string | null;
-  role: string | number;
+  roleId: string | number;
 }

@@ -9,21 +9,15 @@ import { ErrorComponent } from "./components/error/error.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 
 // Service
-import { AuthGuardService } from "./services/auth-guard.service";
-import { ReimbursementComponent } from "./components/reimbursement/reimbursement.component";
+// import { AuthGuardService } from "./services/auth-guard.service";
 
 const routes: Routes = [
   { path: "signup", component: SignupComponent },
   { path: "login", component: LoginComponent },
   {
     path: "dashboard/:id",
-    component: DashboardComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: "reimbursements/page?=:id",
-    component: ReimbursementComponent,
-    canActivate: [AuthGuardService]
+    component: DashboardComponent
+    //canActivate: [AuthGuardService]
   },
   { path: "", component: HomeComponent },
   { path: "**", component: ErrorComponent }

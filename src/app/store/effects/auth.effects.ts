@@ -32,13 +32,9 @@ export class AuthEffects {
     .map((action: Signup) => action.payload)
     .switchMap(payload => {
       return this.authService
-        .signUp(payload.user)
-        .map(() => {
-          return new SignupSuccess({});
-        })
-        .catch(error => {
-          return of(new SignupFail({ error }));
-        });
+        .signUp(payload)
+        .map(() => new SignupSuccess({}))
+        .catch(error => of(new SignupFail({ error })));
     });
 
   @Effect({ dispatch: false })
@@ -77,6 +73,7 @@ export class AuthEffects {
       localStorage.setItem("token", user.payload.token);
       const token = jwt_decode(user.payload.token);
       console.log(token);
+      //this.router.navigateByUrl(`/reimbursements/page/0`);
       this.router.navigateByUrl(`/dashboard/${token.id}`);
     })
   );

@@ -13,9 +13,13 @@ export class ReimbursementService {
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   getAll(): Observable<Reimbursement[]> {
-    // Change to base_url + page=?
     const pageNum = this.route.snapshot.paramMap.get(":id");
     return this.http.get<Reimbursement[]>(`${this.BASE_URL}/page=${pageNum}`);
+  }
+
+  getUserReimbs(): Observable<Reimbursement[]> {
+    const id = this.route.snapshot.paramMap.get(":id");
+    return this.http.get<Reimbursement[]>(`${this.BASE_URL}/user/${id}`);
   }
 
   add(reimb): Observable<Reimbursement> {

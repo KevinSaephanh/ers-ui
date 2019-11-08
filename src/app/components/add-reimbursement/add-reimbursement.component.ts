@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Reimbursement } from "src/app/models/Reimbursement";
 import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
+import { Add } from "src/app/store/actions/reimbursement.action";
 
 @Component({
   selector: "app-add-reimbursement",
@@ -8,26 +10,22 @@ import { Store } from "@ngrx/store";
   styleUrls: ["./add-reimbursement.component.css"]
 })
 export class AddReimbursementComponent implements OnInit {
-  amount: Number;
-  description: string;
+  reimbursement: Reimbursement = new Reimbursement();
   reimbTypes: string[] = ["LODGING", "TRAVEL", "FOOD", "OTHER"];
-  reimbType: string;
+  getState: Observable<any>;
+  error: string | null;
 
-  constructor(private store: Store<{ reimbursements: Reimbursement[] }>) {}
-
-  ngOnInit() {}
-
-  changeReimbType = e => {
-    this.reimbType = e.value;
-  };
-
-  addReimbursement(reimbursement: Reimbursement) {
-    // this.store.dispatch(new ReimbursementAdd(reimbursement));
+  constructor(private store: Store<any>) {
+    this.getState = this.store.select("reimbursements");
   }
 
-  onSubmit = () => {
-    console.log(this.amount);
-    console.log(this.description);
-    console.log(this.reimbType);
-  };
+  ngOnInit() {
+    this.getState.subscribe(state => {
+      this.error = state.error;
+    });
+  }
+
+  addReimbursement(): void {
+    this.store.dispatch(new Add(this.reimbursement));
+  }
 }

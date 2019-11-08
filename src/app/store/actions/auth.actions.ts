@@ -37,6 +37,7 @@ export class Logout implements Action {
 
 export type All =
   | Signup
+  | SignupSuccess
   | SignupFail
   | Login
   | LoginSuccess

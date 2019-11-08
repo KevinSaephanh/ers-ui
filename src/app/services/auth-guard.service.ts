@@ -8,26 +8,29 @@ import * as jwt_decode from "jwt-decode";
 })
 export class AuthGuardService implements CanActivate {
   constructor(
-    private route: ActivatedRoute,
+    //private route: ActivatedRoute,
     public authService: AuthService,
     public router: Router
   ) {}
 
   canActivate(): boolean {
     // Check if local storage has a token
-    if (!localStorage.getItem("token")) {
+    let token = this.authService.getToken();
+    if (!token) {
       this.router.navigateByUrl("/login");
       return false;
     }
 
-    const token = jwt_decode(this.authService.getToken());
-    // Check if token expired
-    const tokenExpired = this.authService.isTokenExpired(token);
-    if (tokenExpired) return false;
+    // Decode token
+    const decoded = jwt_decode(token);
 
+    // Check if token expired
+    const tokenExpired = this.authService.isTokenExpired(decoded);
+    if (tokenExpired) return false;
+    else return true;
     // Check if token id matches parameter id or token role is 2 (Manager)
-    if (token.id == this.route.snapshot.paramMap.get("id") || token.role == 2)
-      return true;
-    else return false;
+    // const paramId = this.route.snapshot.paramMap.get("id");
+    // if (token.id == paramId || token.role == 2) return true;
+    // else return false;
   }
 }

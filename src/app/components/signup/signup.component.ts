@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "src/app/models/User";
 import { Store } from "@ngrx/store";
 import { Signup } from "src/app/store/actions/auth.actions";
-import { AppState, selectAuthState } from "src/app/store";
 import { Observable } from "rxjs";
 
 @Component({
@@ -22,8 +21,8 @@ export class SignupComponent implements OnInit {
     lastname: string;
   };
 
-  constructor(private store: Store<AppState>) {
-    this.getState = this.store.select(selectAuthState);
+  constructor(private store: Store<any>) {
+    this.getState = this.store.select("user");
   }
 
   ngOnInit() {
@@ -33,7 +32,6 @@ export class SignupComponent implements OnInit {
   }
 
   signup(): void {
-    console.log(this.user);
     this.store.dispatch(new Signup(this.user));
   }
 }

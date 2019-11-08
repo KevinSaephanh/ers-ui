@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { AppState, selectAuthState } from "src/app/store";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { Logout } from "src/app/store/actions/auth.actions";
@@ -13,11 +12,8 @@ import { AuthService } from "src/app/services/auth.service";
 export class NavbarComponent implements OnInit {
   getState: Observable<any>;
 
-  constructor(
-    private authService: AuthService,
-    private store: Store<AppState>
-  ) {
-    this.getState = this.store.select(selectAuthState);
+  constructor(private authService: AuthService, private store: Store<any>) {
+    this.getState = this.store.select("user");
   }
 
   ngOnInit() {}

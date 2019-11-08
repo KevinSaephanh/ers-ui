@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { User } from "src/app/models/User";
 import { Store } from "@ngrx/store";
-import { AppState, selectAuthState } from "src/app/store";
 import { Login } from "src/app/store/actions/auth.actions";
 import { Observable } from "rxjs";
 
@@ -15,8 +14,8 @@ export class LoginComponent implements OnInit {
   getState: Observable<any>;
   error: string | null;
 
-  constructor(private store: Store<AppState>) {
-    this.getState = this.store.select(selectAuthState);
+  constructor(private store: Store<any>) {
+    this.getState = this.store.select("auth");
   }
 
   ngOnInit() {

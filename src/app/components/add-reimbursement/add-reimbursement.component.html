@@ -1,17 +1,17 @@
 <div class="content">
   <h1>Reimbrusement Request</h1>
 
-  <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="addReimbursement()">
     <mat-form-field class="form-field2">
-      <input matInput placeholder="Amount" required [(ngModel)]="amount">
+      <input matInput placeholder="Amount" required [(ngModel)]="reimbursement.reimb_amount">
     </mat-form-field>
     <mat-form-field class="form-field2">
-      <input type="text" matInput placeholder="Description" maxlength="250" required [(ngModel)]="description">
+      <input type="text" matInput placeholder="Description" maxlength="250" required
+        [(ngModel)]="reimbursement.reimb_description">
     </mat-form-field>
     <label class="radio-label">Select a Reimbursement Type</label>
     <mat-radio-group class="radio-group" required>
-      <mat-radio-button class="radio-buttons" *ngFor="let reimbType of reimbTypes" [value]="reimbType"
-        (change)="changeReimbType($event)">
+      <mat-radio-button class="radio-buttons" *ngFor="let reimbType of reimbTypes; let i = index" [value]="i + 1">
         {{reimbType}}
       </mat-radio-button>
     </mat-radio-group>
