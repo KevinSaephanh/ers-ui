@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { User } from "../models/User";
+import * as jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: "root"
@@ -26,6 +27,12 @@ export class AuthService {
     // Check if current time is equal to/exceeds token expiration date
     if (currentTime >= token.exp) return true;
     else return false;
+  }
+
+  getUser(): any {
+    const token = JSON.parse(localStorage.getItem("token"));
+    const decoded = jwt_decode(token);
+    return decoded;
   }
 
   signUp(user: User): Observable<User> {

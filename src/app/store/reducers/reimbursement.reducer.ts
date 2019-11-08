@@ -16,7 +16,7 @@ export const ReimbursementReducer = (state = initState, action: any) => {
     case ReimbursementActionTypes.ADD_SUCCESS:
       return {
         ...state,
-        reimbursements: state.reimbursements.push(action.payload),
+        reimbursements: action.payload,
         error: null
       };
     case ReimbursementActionTypes.ADD_FAIL:

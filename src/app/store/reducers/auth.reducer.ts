@@ -22,7 +22,6 @@ export function AuthReducer(state = initState, action: All): AuthState {
       };
     }
     case AuthActionTypes.LOGIN_SUCCESS: {
-      console.log(action.payload);
       return {
         ...state,
         isAuthenticated: true,

@@ -62,6 +62,7 @@ export class AuthEffects {
       return this.authService
         .login(payload.username, payload.password)
         .map(user => {
+          localStorage.setItem("token", JSON.stringify(user));
           const token = jwt_decode(user);
           console.log(token);
           return new LoginSuccess({ user: token });
@@ -72,12 +73,14 @@ export class AuthEffects {
     });
 
   @Effect({ dispatch: false })
-  LogInSuccess$: Observable<any> = this.actions$.pipe(
+  LoginSuccess$: Observable<any> = this.actions$.pipe(
     ofType(AuthActionTypes.LOGIN_SUCCESS),
     tap(user => {
       // Get token and set in local storage
       const token = user.payload.user;
       console.log(token);
+      //localStorage.setItem("token", token);
+
       //this.router.navigateByUrl(`/reimbursements/page/0`);
       this.router.navigateByUrl(`/dashboard/${token.id}`);
     })

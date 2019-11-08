@@ -17,7 +17,6 @@ export class ReimbursementService {
   }
 
   getUserReimbs(id: any): Observable<Reimbursement[]> {
-    console.log(id);
     return this.http.get<Reimbursement[]>(`${this.BASE_URL}/user/${id}`);
   }
 

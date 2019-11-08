@@ -11,9 +11,8 @@
         [(ngModel)]="reimbursement.description" name="description">
     </mat-form-field>
     <label class="radio-label">Select Reimbursement Type</label>
-    <mat-radio-group class="radio-group" required>
-      <mat-radio-button class="radio-buttons" *ngFor="let reimbType of reimbTypes; let i = index" [value]="i + 1"
-        name="reimbType">
+    <mat-radio-group class="radio-group" [(ngModel)]="reimbursement.reimbTypeId" name="reimbTypeId" required>
+      <mat-radio-button class="radio-buttons" *ngFor="let reimbType of reimbTypes; let i = index" [value]="i + 1">
         {{reimbType}}
       </mat-radio-button>
     </mat-radio-group>

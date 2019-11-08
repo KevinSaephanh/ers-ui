@@ -3,6 +3,7 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { Logout } from "src/app/store/actions/auth.actions";
 import { AuthService } from "src/app/services/auth.service";
+import { AppState } from "src/app/store";
 
 @Component({
   selector: "app-navbar",
@@ -12,27 +13,30 @@ import { AuthService } from "src/app/services/auth.service";
 export class NavbarComponent implements OnInit {
   getState: Observable<any>;
   id: any;
+  role: any;
+  profileLink: string;
 
-  constructor(private authService: AuthService, private store: Store<any>) {
+  constructor(
+    private authService: AuthService,
+    private store: Store<AppState>
+  ) {
     this.getState = this.store.select("auth");
   }
 
   ngOnInit() {
-    this.getState.subscribe(state => {
-      //      this.id = state.user.id;
-      console.log(state);
-    });
-    // console.log(this.id);
+    // Check if user is authenticated
+    if (localStorage.getItem("token")) {
+      const user = this.authService.getUser();
+      this.id = user.id;
+      this.role = user.role;
+      this.profileLink = `/dashboard/${this.id}`;
+    }
   }
 
   checkIfLoggedIn(): boolean {
     const authenticated = this.authService.getToken();
     if (authenticated != null) return true;
     return false;
-  }
-
-  toProfile(): void {
-    console.log("Hello");
   }
 
   logout(): void {

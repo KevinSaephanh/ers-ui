@@ -9,7 +9,7 @@
       <li><a *ngIf="!checkIfLoggedIn()" routerLink="/signup">SIGNUP</a></li>
       <li><a *ngIf="!checkIfLoggedIn()" routerLink="/login">LOGIN</a></li>
       <li *ngIf="checkIfLoggedIn()"><a routerLink="/add_reimbursement">ADD</a></li>
-      <li *ngIf="checkIfLoggedIn()"><a (click)="toProfile()" routerLink="/">PROFILE</a></li>
+      <li *ngIf="checkIfLoggedIn()"><a routerLink="{{profileLink}}">PROFILE</a></li>
       <li *ngIf="checkIfLoggedIn()"><a (click)="logout()" routerLink="/">LOGOUT</a></li>
     </ul>
   </mat-toolbar>
