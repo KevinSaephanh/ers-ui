@@ -16,7 +16,7 @@ export class AddReimbursementComponent implements OnInit {
   error: string | null;
 
   constructor(private store: Store<any>) {
-    this.getState = this.store.select("reimbursements");
+    this.getState = this.store.select("reimbursement");
   }
 
   ngOnInit() {

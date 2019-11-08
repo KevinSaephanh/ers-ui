@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
+  login(): void {
     const payload = {
       username: this.user.username,
       password: this.user.password

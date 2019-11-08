@@ -8,6 +8,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { ErrorComponent } from "./components/error/error.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { ReimbursementsComponent } from "./components/reimbursements/reimbursements.component";
+import { AddReimbursementComponent } from "./components/add-reimbursement/add-reimbursement.component";
 
 // Service
 // import { AuthGuardService } from "./services/auth-guard.service";
@@ -19,6 +20,10 @@ const routes: Routes = [
     path: "dashboard/:id",
     component: DashboardComponent
     //canActivate: [AuthGuardService]
+  },
+  {
+    path: "add_reimbursement",
+    component: AddReimbursementComponent
   },
   {
     path: "reimbursements/page/:id",

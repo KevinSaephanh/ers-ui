@@ -39,7 +39,8 @@ import { ReimbursementsComponent } from "./components/reimbursements/reimburseme
     ErrorComponent,
     AddReimbursementComponent,
     DashboardComponent,
-    ReimbursementsComponent
+    ReimbursementsComponent,
+    AddReimbursementComponent
   ],
   imports: [
     BrowserModule,

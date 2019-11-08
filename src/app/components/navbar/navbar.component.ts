@@ -11,20 +11,31 @@ import { AuthService } from "src/app/services/auth.service";
 })
 export class NavbarComponent implements OnInit {
   getState: Observable<any>;
+  id: any;
 
   constructor(private authService: AuthService, private store: Store<any>) {
-    this.getState = this.store.select("user");
+    this.getState = this.store.select("auth");
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getState.subscribe(state => {
+      //      this.id = state.user.id;
+      console.log(state);
+    });
+    // console.log(this.id);
+  }
 
-  checkIfLoggedIn() {
+  checkIfLoggedIn(): boolean {
     const authenticated = this.authService.getToken();
     if (authenticated != null) return true;
     return false;
   }
 
-  logout() {
+  toProfile(): void {
+    console.log("Hello");
+  }
+
+  logout(): void {
     this.store.dispatch(new Logout());
   }
 }

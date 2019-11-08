@@ -12,7 +12,8 @@ import {
   AddSuccess,
   AddFail,
   GetUsersReimbs,
-  GetAll
+  GetAll,
+  Add
 } from "../actions/reimbursement.action";
 
 @Injectable()
@@ -65,6 +66,7 @@ export class ReimbursementEffects {
   @Effect()
   addReimb$: Observable<any> = this.actions$
     .ofType(ReimbursementActionTypes.ADD)
+    .map((action: Add) => action.payload)
     .switchMap(payload => {
       return this.reimbService.add(payload);
     })

@@ -3,7 +3,7 @@ import { All } from "../actions/auth.actions";
 
 export interface AuthState {
   readonly isAuthenticated: boolean;
-  readonly user: {};
+  readonly user: {} | null;
   readonly error: string | null;
 }
 
@@ -22,14 +22,15 @@ export function AuthReducer(state = initState, action: All): AuthState {
       };
     }
     case AuthActionTypes.LOGIN_SUCCESS: {
+      console.log(action.payload);
       return {
         ...state,
         isAuthenticated: true,
         user: {
-          id: action.payload.id,
-          username: action.payload.username,
-          role: action.payload.role,
-          token: action.payload.token
+          id: action.payload.user.id,
+          username: action.payload.user.sub,
+          role: action.payload.user.role,
+          expiresAt: action.payload.user.exp
         },
         error: null
       };

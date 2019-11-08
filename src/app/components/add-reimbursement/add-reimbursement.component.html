@@ -2,16 +2,18 @@
   <h1>Reimbrusement Request</h1>
 
   <form (ngSubmit)="addReimbursement()">
+    <span class="error">{{error}}</span>
     <mat-form-field class="form-field2">
-      <input matInput placeholder="Amount" required [(ngModel)]="reimbursement.amount">
+      <input matInput placeholder="Amount" required [(ngModel)]="reimbursement.amount" name="amount">
     </mat-form-field>
     <mat-form-field class="form-field2">
       <input type="text" matInput placeholder="Description" maxlength="250" required
-        [(ngModel)]="reimbursement.description">
+        [(ngModel)]="reimbursement.description" name="description">
     </mat-form-field>
-    <label class="radio-label">Select a Reimbursement Type</label>
+    <label class="radio-label">Select Reimbursement Type</label>
     <mat-radio-group class="radio-group" required>
-      <mat-radio-button class="radio-buttons" *ngFor="let reimbType of reimbTypes; let i = index" [value]="i + 1">
+      <mat-radio-button class="radio-buttons" *ngFor="let reimbType of reimbTypes; let i = index" [value]="i + 1"
+        name="reimbType">
         {{reimbType}}
       </mat-radio-button>
     </mat-radio-group>
