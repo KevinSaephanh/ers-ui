@@ -1,12 +1,12 @@
 export class Reimbursement {
-  reimb_id: number | null;
-  reimb_amount: number;
-  reimb_submitted: Date;
-  reimb_resolved: Date | null;
-  reimb_description: string | null;
-  reimb_receipt: any | null;
-  reimb_author: string | number;
-  reimb_resolver: string | number | null;
-  reimb_type_id: string | number;
-  reimb_status_id: string | number;
+  id: number | null;
+  amount: number;
+  submitted: Date;
+  resolved: Date | null;
+  description: string | null;
+  receipt: any | null;
+  authorId: number;
+  resolverId: number | null;
+  reimbTypeId: number;
+  reimbStatusId: number;
 }

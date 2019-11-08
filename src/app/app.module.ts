@@ -27,6 +27,7 @@ import { AuthEffects } from "./store/effects/auth.effects";
 import { ReimbursementEffects } from "./store/effects/reimbursements.effects";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { AuthGuardService } from "./services/auth-guard.service";
+import { ReimbursementsComponent } from "./components/reimbursements/reimbursements.component";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AuthGuardService } from "./services/auth-guard.service";
     HomeComponent,
     ErrorComponent,
     AddReimbursementComponent,
-    DashboardComponent
+    DashboardComponent,
+    ReimbursementsComponent
   ],
   imports: [
     BrowserModule,

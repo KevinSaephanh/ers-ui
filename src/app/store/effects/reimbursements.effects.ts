@@ -10,7 +10,9 @@ import {
   UpdateSuccess,
   UpdateFail,
   AddSuccess,
-  AddFail
+  AddFail,
+  GetUsersReimbs,
+  GetAll
 } from "../actions/reimbursement.action";
 
 @Injectable()
@@ -23,20 +25,32 @@ export class ReimbursementEffects {
   @Effect()
   getUserReimbs$: Observable<any> = this.actions$
     .ofType(ReimbursementActionTypes.GET_USERS_REIMBS)
-    .switchMap(() => {
-      return this.reimbService.getUserReimbs();
-    })
-    .map(reimbs => new GetSuccess(reimbs))
-    .catch(error => of(new GetFail(error)));
+    .map((action: GetUsersReimbs) => action.payload)
+    .switchMap(payload =>
+      this.reimbService
+        .getUserReimbs(payload)
+        .map(reimbs => {
+          console.log(reimbs);
+          return new GetSuccess(reimbs);
+        })
+        .catch(error => {
+          return of(new GetFail(error));
+        })
+    );
 
   @Effect()
   getReimbs$: Observable<any> = this.actions$
     .ofType(ReimbursementActionTypes.GET_ALL)
-    .switchMap(() => {
-      return this.reimbService.getAll();
+    .map((action: GetAll) => action.payload)
+    .switchMap(payload => {
+      return this.reimbService.getAll(payload);
     })
-    .map(reimbs => new GetSuccess(reimbs))
-    .catch(error => of(new GetFail(error)));
+    .map(reimbs => {
+      return new GetSuccess(reimbs);
+    })
+    .catch(error => {
+      return of(new GetFail(error));
+    });
 
   @Effect({ dispatch: false })
   getSuccess$: Observable<any> = this.actions$.pipe(

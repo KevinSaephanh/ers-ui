@@ -40,7 +40,7 @@ export const ReimbursementReducer = (state = initState, action: any) => {
       return {
         ...state,
         reimbursements: state.reimbursements.filter(
-          reimb => reimb.reimb_id !== action.id
+          reimb => reimb.id !== action.id
         ),
         error: null
       };

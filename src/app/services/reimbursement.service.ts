@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Reimbursement } from "../models/Reimbursement";
-import { ActivatedRoute } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
@@ -10,23 +9,25 @@ import { ActivatedRoute } from "@angular/router";
 export class ReimbursementService {
   private BASE_URL = "http://localhost:8080/ers/reimbursements";
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Reimbursement[]> {
-    const pageNum = this.route.snapshot.paramMap.get(":id");
-    return this.http.get<Reimbursement[]>(`${this.BASE_URL}/page=${pageNum}`);
+  getAll(page: any): Observable<Reimbursement[]> {
+    console.log(page);
+    return this.http.get<Reimbursement[]>(`${this.BASE_URL}/page=${page}`);
   }
 
-  getUserReimbs(): Observable<Reimbursement[]> {
-    const id = this.route.snapshot.paramMap.get(":id");
+  getUserReimbs(id: any): Observable<Reimbursement[]> {
+    console.log(id);
     return this.http.get<Reimbursement[]>(`${this.BASE_URL}/user/${id}`);
   }
 
   add(reimb): Observable<Reimbursement> {
+    console.log(reimb);
     return this.http.post<Reimbursement>(this.BASE_URL, reimb);
   }
 
   update(reimb): Observable<Reimbursement> {
+    console.log(reimb);
     return this.http.put<Reimbursement>(`${this.BASE_URL}/id`, reimb);
   }
 }

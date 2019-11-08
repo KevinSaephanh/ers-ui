@@ -33,8 +33,12 @@ export class AuthEffects {
     .switchMap(payload => {
       return this.authService
         .signUp(payload)
-        .map(() => new SignupSuccess({}))
-        .catch(error => of(new SignupFail({ error })));
+        .map(() => {
+          return new SignupSuccess({});
+        })
+        .catch(error => {
+          return of(new SignupFail({ error }));
+        });
     });
 
   @Effect({ dispatch: false })

@@ -23,6 +23,7 @@ export class Get implements Action {
 
 export class GetAll implements Action {
   readonly type = ReimbursementActionTypes.GET_ALL;
+  constructor(public payload: any) {}
 }
 
 export class GetUsersReimbs implements Action {

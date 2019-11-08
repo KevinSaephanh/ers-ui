@@ -3,11 +3,11 @@
 
   <form (ngSubmit)="addReimbursement()">
     <mat-form-field class="form-field2">
-      <input matInput placeholder="Amount" required [(ngModel)]="reimbursement.reimb_amount">
+      <input matInput placeholder="Amount" required [(ngModel)]="reimbursement.amount">
     </mat-form-field>
     <mat-form-field class="form-field2">
       <input type="text" matInput placeholder="Description" maxlength="250" required
-        [(ngModel)]="reimbursement.reimb_description">
+        [(ngModel)]="reimbursement.description">
     </mat-form-field>
     <label class="radio-label">Select a Reimbursement Type</label>
     <mat-radio-group class="radio-group" required>
