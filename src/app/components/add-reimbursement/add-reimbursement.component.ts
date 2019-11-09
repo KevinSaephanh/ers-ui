@@ -29,6 +29,7 @@ export class AddReimbursementComponent implements OnInit {
       this.error = state.error;
     });
 
+    // Add user info and pending status to reimbursement ticket
     const user = this.authService.getUser();
     this.reimbursement.authorId = user.id;
     this.reimbursement.reimbStatusId = 1;
@@ -37,5 +38,6 @@ export class AddReimbursementComponent implements OnInit {
   addReimbursement(): void {
     console.log(this.reimbursement);
     this.store.dispatch(new Add(this.reimbursement));
+    window.location.href = `/dashboard/${this.reimbursement.authorId}`;
   }
 }

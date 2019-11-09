@@ -27,6 +27,7 @@ import { AuthEffects } from "./store/effects/auth.effects";
 import { ReimbursementEffects } from "./store/effects/reimbursements.effects";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { AuthGuardService } from "./services/auth-guard.service";
+import { ReimbursementComponent } from "./components/reimbursement/reimbursement.component";
 import { ReimbursementsComponent } from "./components/reimbursements/reimbursements.component";
 import { CardComponent } from './card/card.component';
 
@@ -40,9 +41,15 @@ import { CardComponent } from './card/card.component';
     ErrorComponent,
     AddReimbursementComponent,
     DashboardComponent,
+<<<<<<< HEAD
     ReimbursementsComponent,
     AddReimbursementComponent,
     CardComponent
+=======
+    AddReimbursementComponent,
+    ReimbursementComponent,
+    ReimbursementsComponent
+>>>>>>> 3b74457ec126c831ee1d94acfa9d04484b982922
   ],
   imports: [
     BrowserModule,

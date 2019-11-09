@@ -1,0 +1,32 @@
+.card-content {
+  display: flex !important;
+}
+
+.info-col {
+  height: 100%;
+  width: 50% !important;
+  text-align: left !important;
+}
+
+.info-col .reimb-field {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info-col .reimb-field:hover {
+  text-overflow: unset;
+  overflow: unset;
+  white-space: unset;
+}
+
+.img-col {
+  height: 100% !important;
+  width: 50% !important;
+}
+
+.img-col img {
+  width: 100%;
+  height: 70%;
+}

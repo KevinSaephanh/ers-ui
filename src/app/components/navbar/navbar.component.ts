@@ -33,6 +33,11 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  checkIfAdmin(): boolean {
+    if (this.role == 2) return true;
+    else return false;
+  }
+
   checkIfLoggedIn(): boolean {
     const authenticated = this.authService.getToken();
     if (authenticated != null) return true;

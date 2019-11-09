@@ -1,13 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "src/app/services/auth.service";
-import { Store, select } from "@ngrx/store";
-import { Reimbursement } from "src/app/models/Reimbursement";
+import { Store } from "@ngrx/store";
 import { Observable, of } from "rxjs";
-import * as jwt_decode from "jwt-decode";
-import { ReimbursementActionTypes } from "src/app/store/actions/reimbursement.action-types";
 import { GetUsersReimbs } from "src/app/store/actions/reimbursement.action";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { switchMap } from "rxjs/operators";
+import { ReimbState } from "src/app/store/reducers/reimbursement.reducer";
 
 @Component({
   selector: "app-dashboard",
@@ -15,7 +12,7 @@ import { switchMap } from "rxjs/operators";
   styleUrls: ["./dashboard.component.css"]
 })
 export class DashboardComponent implements OnInit {
-  reimbursements$: Observable<Reimbursement[]>;
+  reimbursements$: Observable<ReimbState>;
   getState: Observable<any>;
   id: any;
 
@@ -32,7 +29,10 @@ export class DashboardComponent implements OnInit {
 
     // Update reimbursements
     this.getState.subscribe(state => {
-      this.reimbursements$ = state.reimbursements;
+      if (state.reimbursements) {
+        this.reimbursements$ = state.reimbursements;
+        console.log(this.reimbursements$);
+      }
     });
   }
 }

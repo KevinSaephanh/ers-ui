@@ -27,7 +27,7 @@ export class AuthEffects {
   ) {}
 
   @Effect()
-  SignUp$: Observable<any> = this.actions$
+  Signup$: Observable<any> = this.actions$
     .ofType(AuthActionTypes.SIGNUP)
     .map((action: Signup) => action.payload)
     .switchMap(payload => {
@@ -42,7 +42,7 @@ export class AuthEffects {
     });
 
   @Effect({ dispatch: false })
-  SignUpSuccess$: Observable<any> = this.actions$.pipe(
+  SignupSuccess$: Observable<any> = this.actions$.pipe(
     ofType(AuthActionTypes.SIGNUP_SUCCESS),
     tap(() => {
       this.router.navigateByUrl("/login");
@@ -50,7 +50,7 @@ export class AuthEffects {
   );
 
   @Effect({ dispatch: false })
-  SignUpFail$: Observable<any> = this.actions$.pipe(
+  SignupFail$: Observable<any> = this.actions$.pipe(
     ofType(AuthActionTypes.SIGNUP_FAIL)
   );
 
