@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { Reimbursement } from "src/app/models/Reimbursement";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { switchMap } from "rxjs/operators";
-import { GetAll } from "src/app/store/actions/reimbursement.action";
+import { GetAll, Update } from "src/app/store/actions/reimbursement.action";
+import { ReimbState } from "src/app/store/reducers/reimbursement.reducer";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-reimbursements",
@@ -12,11 +13,15 @@ import { GetAll } from "src/app/store/actions/reimbursement.action";
   styleUrls: ["./reimbursements.component.css"]
 })
 export class ReimbursementsComponent implements OnInit {
-  reimbursements$: Observable<Reimbursement[]>;
+  reimbursements$: Observable<ReimbState>;
   getState: Observable<any>;
   page: any;
 
-  constructor(private route: ActivatedRoute, private store: Store<any>) {
+  constructor(
+    private route: ActivatedRoute,
+    private store: Store<any>,
+    private authService: AuthService
+  ) {
     this.getState = this.store.select("reimbursement");
   }
 
@@ -27,10 +32,40 @@ export class ReimbursementsComponent implements OnInit {
       .subscribe(page => (this.page = page));
     this.store.dispatch(new GetAll(this.page));
 
-    // Update reimbursements
+    // Set reimbursements equal to state reimbursements
     this.getState.subscribe(state => {
-      this.reimbursements$ = state.reimbursements;
+      if (state.reimbursements) {
+        this.reimbursements$ = state.reimbursements;
+        console.log(this.reimbursements$);
+      }
     });
-    console.log(this.reimbursements$);
+  }
+
+  updateTicket(reimb, newStatusId): void {
+    // Check if admin is trying to resolve his/her own ticket
+    const user = this.authService.getUser();
+    if (user.id == reimb.id) return;
+
+    // Set reimbursement details and send update request
+    let r = reimb;
+    r.resolverId = user.id;
+    r.reimbStatusId = newStatusId;
+    r.submitted = null;
+
+    switch (r.reimbTypeId) {
+      case "Lodging":
+        r.reimbTypeId = 1;
+        break;
+      case "Travel":
+        r.reimbTypeId = 2;
+        break;
+      case "Food":
+        r.reimbTypeId = 3;
+        break;
+      case "Other":
+        r.reimbTypeId = 4;
+        break;
+    }
+    this.store.dispatch(new Update(r));
   }
 }

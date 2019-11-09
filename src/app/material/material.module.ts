@@ -19,7 +19,9 @@ import * as Material from "@angular/material";
     Material.MatFormFieldModule,
     Material.MatInputModule,
     Material.MatButtonModule,
-    Material.MatRadioModule
+    Material.MatRadioModule,
+
+    Material.MatCardModule
   ],
   exports: [
     CommonModule,
@@ -36,7 +38,9 @@ import * as Material from "@angular/material";
     Material.MatFormFieldModule,
     Material.MatInputModule,
     Material.MatButtonModule,
-    Material.MatRadioModule
+    Material.MatRadioModule,
+
+    Material.MatCardModule
   ]
 })
 export class MaterialModule {}

@@ -12,7 +12,6 @@ export class ReimbursementService {
   constructor(private http: HttpClient) {}
 
   getAll(page: any): Observable<Reimbursement[]> {
-    console.log(page);
     return this.http.get<Reimbursement[]>(`${this.BASE_URL}/page=${page}`);
   }
 
@@ -21,12 +20,10 @@ export class ReimbursementService {
   }
 
   add(reimb): Observable<Reimbursement> {
-    console.log(reimb);
     return this.http.post<Reimbursement>(this.BASE_URL, reimb);
   }
 
   update(reimb): Observable<Reimbursement> {
-    console.log(reimb);
-    return this.http.put<Reimbursement>(`${this.BASE_URL}/id`, reimb);
+    return this.http.put<Reimbursement>(`${this.BASE_URL}/${reimb.id}`, reimb);
   }
 }

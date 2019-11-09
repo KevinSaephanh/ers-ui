@@ -13,14 +13,18 @@ import {
   AddFail,
   GetUsersReimbs,
   GetAll,
-  Add
+  Add,
+  Update
 } from "../actions/reimbursement.action";
+import { Router } from "@angular/router";
+import { tap } from "rxjs/operators";
 
 @Injectable()
 export class ReimbursementEffects {
   constructor(
     private actions$: Actions,
-    private reimbService: ReimbursementService
+    private reimbService: ReimbursementService,
+    private router: Router
   ) {}
 
   @Effect()
@@ -90,10 +94,13 @@ export class ReimbursementEffects {
   @Effect()
   update$: Observable<any> = this.actions$
     .ofType(ReimbursementActionTypes.UPDATE)
+    .map((action: Update) => action.payload)
     .switchMap(payload => {
+      console.log(payload);
       return this.reimbService.update(payload);
     })
     .map(reimb => {
+      console.log(reimb);
       return new UpdateSuccess(reimb);
     })
     .catch(error => {
@@ -102,7 +109,8 @@ export class ReimbursementEffects {
 
   @Effect({ dispatch: false })
   updateSuccess$: Observable<any> = this.actions$.pipe(
-    ofType(ReimbursementActionTypes.UPDATE_SUCCESS)
+    ofType(ReimbursementActionTypes.UPDATE_SUCCESS),
+    tap(() => this.router.navigateByUrl("/"))
   );
 
   @Effect({ dispatch: false })

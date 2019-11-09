@@ -72,7 +72,22 @@ h1 {
   margin: 10px 0;
 }
 
-@media only screen and(max-width: 600px) {
+.card {
+  width: 500px;
+  border: 1.5px solid black;
+  margin: 5px;
+}
+
+.card-container {
+  width: 90vw;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and(max-width: 700px) {
   .content form {
     width: 100%;
   }
@@ -80,5 +95,10 @@ h1 {
   .mat-form-field {
     width: 90% !important;
     font-size: 1rem;
+  }
+
+  .card {
+    width: 95vw !important;
+    margin: 5px auto;
   }
 }
