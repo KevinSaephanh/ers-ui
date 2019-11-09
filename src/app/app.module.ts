@@ -28,6 +28,7 @@ import { ReimbursementEffects } from "./store/effects/reimbursements.effects";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { AuthGuardService } from "./services/auth-guard.service";
 import { ReimbursementsComponent } from "./components/reimbursements/reimbursements.component";
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ReimbursementsComponent } from "./components/reimbursements/reimburseme
     AddReimbursementComponent,
     DashboardComponent,
     ReimbursementsComponent,
-    AddReimbursementComponent
+    AddReimbursementComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

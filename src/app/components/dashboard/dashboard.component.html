@@ -1,3 +1,24 @@
+<!--
 <ul>
-  <li *ngFor="let reimb of reimbursements$">Reimbursement id: {{reimb.id}}</li>
+  <li *ngFor="let reimb of reimbursements$">
+    <p class="id">Reimbursment ID: {{reimb.id}}</p>
+    <p class="amount">Amount: {{reimb.amount}}</p>
+    <p class="submitted">Date Submitted: {{reimb.submitted.dayOfMonth}} {{reimb.submitted.month}}, {{reimb.submitted.year}}</p>
+    <p class="resolved" *ngIf="reimb.resolved"> Date Resolved: {{reimb.resolved.dayOfMonth}} {{reimb.resolved.month}}, {{reimb.resolved.year}</p>
+    <p class="resolved" *ngIf="!reimb.resolved"> Date Resolved: Unresolved </p>
+    <p class="description">Description: {{reimb.description}}</p>
+    <p class="receipt">Receipt: {{reimb.receipt}}</p>
+    <p class="authorId">Author ID: {{reimb.authorId}}</p>
+    <p class="resolverId">Resolver ID: {{reimb.resolverId}}</p>
+    <p class="reimbTypeId">Reimbursment Type: {{reimb.reimbTypeId}}</p>
+    <p class="reimbStatusId">Reimbursment Status: {{reimb.reimbStatusId}}</p>
+  </li>
+</ul>
+-->
+<ul>
+  <li *ngFor="let reimbursement of reimbursements$">
+    <app-card [reimbursement] = "reimbursement">
+
+    </app-card>
+  </li>
 </ul>
