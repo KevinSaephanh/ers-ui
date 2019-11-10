@@ -41,16 +41,11 @@ import { CardComponent } from './card/card.component';
     ErrorComponent,
     AddReimbursementComponent,
     DashboardComponent,
-<<<<<<< HEAD
-    ReimbursementsComponent,
-    AddReimbursementComponent,
-    CardComponent
-=======
     AddReimbursementComponent,
     ReimbursementComponent,
     ReimbursementsComponent
->>>>>>> 3b74457ec126c831ee1d94acfa9d04484b982922
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
