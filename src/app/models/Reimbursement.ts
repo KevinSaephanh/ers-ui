@@ -4,7 +4,7 @@ export class Reimbursement {
   submitted: Date | null;
   resolved: Date | null;
   description: string | null;
-  receipt: any | null;
+  receipt: Blob | null;
   authorId: number | string;
   resolverId: number | string | null;
   reimbTypeId: number | string;

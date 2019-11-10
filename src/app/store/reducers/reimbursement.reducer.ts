@@ -19,10 +19,10 @@ export const ReimbursementReducer = (state = initState, action: any) => {
         reimbursements: action.payload,
         error: null
       };
-    case ReimbursementActionTypes.ADD_FAIL:
+    case ReimbursementActionTypes.UPLOAD_SUCCESS:
       return {
         ...state,
-        error: action.payload
+        error: null
       };
     case ReimbursementActionTypes.GET_SUCCESS:
       return {
@@ -40,11 +40,13 @@ export const ReimbursementReducer = (state = initState, action: any) => {
       return {
         ...state,
         reimbursements: state.reimbursements.filter(
-          reimb => reimb.id !== action.id
+          reimb => reimb.id !== action.payload.id
         ),
         error: null
       };
+    case ReimbursementActionTypes.ADD_FAIL:
     case ReimbursementActionTypes.UPDATE_FAIL:
+    case ReimbursementActionTypes.UPLOAD_FAIL:
       return {
         ...state,
         error: action.payload

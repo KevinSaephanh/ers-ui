@@ -16,6 +16,21 @@ export class AddFail implements Action {
   constructor(public payload: any) {}
 }
 
+export class UploadReceipt implements Action {
+  readonly type = ReimbursementActionTypes.UPLOAD;
+  constructor(public payload: any) {}
+}
+
+export class UploadReceiptSuccess implements Action {
+  readonly type = ReimbursementActionTypes.UPLOAD_SUCCESS;
+  constructor(public payload: any) {}
+}
+
+export class UploadReceiptFail implements Action {
+  readonly type = ReimbursementActionTypes.UPLOAD_FAIL;
+  constructor(public payload: any) {}
+}
+
 export class Get implements Action {
   readonly type = ReimbursementActionTypes.GET;
   constructor(public payload: any) {}
