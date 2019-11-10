@@ -14,7 +14,9 @@ import {
   GetUsersReimbs,
   GetAll,
   Add,
-  Update
+  Update,
+  UploadReceipt,
+  UploadReceiptSuccess
 } from "../actions/reimbursement.action";
 import { Router } from "@angular/router";
 import { tap } from "rxjs/operators";
@@ -75,9 +77,12 @@ export class ReimbursementEffects {
       return this.reimbService.add(payload);
     })
     .map(reimb => {
-      return new AddSuccess(reimb);
+      console.log(reimb);
+      new AddSuccess(reimb);
+      return new UploadReceipt(reimb);
     })
     .catch(error => {
+      console.log(error);
       return of(new AddFail({ error }));
     });
 
@@ -89,6 +94,23 @@ export class ReimbursementEffects {
   @Effect({ dispatch: false })
   addFail$: Observable<any> = this.actions$.pipe(
     ofType(ReimbursementActionTypes.ADD_FAIL)
+  );
+
+  @Effect()
+  uploadReceipt$: Observable<any> = this.actions$
+    .ofType(ReimbursementActionTypes.UPLOAD)
+    .map((action: UploadReceipt) => action.payload)
+    .switchMap(payload => {
+      console.log(payload);
+      return this.reimbService.uploadReceipt(payload);
+    })
+    .map(reimb => {
+      return new UploadReceiptSuccess(reimb);
+    });
+
+  @Effect({ dispatch: false })
+  uploadReceiptSuccess$: Observable<any> = this.actions$.ofType(
+    ReimbursementActionTypes.UPLOAD_SUCCESS
   );
 
   @Effect()
@@ -109,8 +131,7 @@ export class ReimbursementEffects {
 
   @Effect({ dispatch: false })
   updateSuccess$: Observable<any> = this.actions$.pipe(
-    ofType(ReimbursementActionTypes.UPDATE_SUCCESS),
-    tap(() => this.router.navigateByUrl("/"))
+    ofType(ReimbursementActionTypes.UPDATE_SUCCESS)
   );
 
   @Effect({ dispatch: false })

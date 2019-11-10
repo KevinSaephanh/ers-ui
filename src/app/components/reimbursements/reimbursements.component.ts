@@ -41,10 +41,15 @@ export class ReimbursementsComponent implements OnInit {
     });
   }
 
+  isPending(reimb) {
+    if ((reimb.reimbStatusId = "Pending")) return true;
+    else return false;
+  }
+
   updateTicket(reimb, newStatusId): void {
     // Check if admin is trying to resolve his/her own ticket
     const user = this.authService.getUser();
-    if (user.id == reimb.id) return;
+    if (user.id == reimb.authorId) return;
 
     // Set reimbursement details and send update request
     let r = reimb;

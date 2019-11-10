@@ -1,7 +1,9 @@
 <div class="card-container">
   <mat-card class="card" *ngFor="let reimbursement of reimbursements$">
     <app-reimbursement [reimbursement]="reimbursement"></app-reimbursement>
-    <button type="button" class="form-button" (click)="updateTicket(reimbursement, 3)">Approve</button>
-    <button type="button" class="form-button" (click)="updateTicket(reimbursement, 2)">Deny</button>
+    <button type="button" *ngIf="isPending(reimbursement)" class="form-button"
+      (click)="updateTicket(reimbursement, 3)">Approve</button>
+    <button type="button" *ngIf="isPending(reimbursement)" class="form-button"
+      (click)="updateTicket(reimbursement, 2)">Deny</button>
   </mat-card>
 </div>
