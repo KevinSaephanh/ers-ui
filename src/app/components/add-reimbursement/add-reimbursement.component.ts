@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { Add, UploadReceipt } from "src/app/store/actions/reimbursement.action";
 import { AppState } from "src/app/store";
 import { AuthService } from "src/app/services/auth.service";
+import { ReimbImgServiceService } from 'src/app/services/reimb-img-service.service';
 
 @Component({
   selector: "app-add-reimbursement",
@@ -17,21 +18,23 @@ export class AddReimbursementComponent implements OnInit {
   getState: Observable<any>;
   file: any;
   type: any;
+  reimbImgString: string;
 
   constructor(
     private store: Store<AppState>,
-    private authService: AuthService
+    private authService: AuthService,
+    private reimbImgService: ReimbImgServiceService
   ) {
     this.getState = this.store.select("reimbursement");
   }
 
   ngOnInit() {
-    this.getState.subscribe(state => {
-      console.log(state.reimbursements);
-      if (state.reimbursements) {
-        this.reimbursement$ = state.reimbursements;
-      }
-    });
+    // this.getState.subscribe(state => {
+    //   console.log(state.reimbursements);
+    //   if (state.reimbursements) {
+    //     this.reimbursement$ = state.reimbursements;
+    //   }
+    //});
 
     // Add user info and pending status to reimbursement ticket
     const user = this.authService.getUser();
@@ -39,13 +42,19 @@ export class AddReimbursementComponent implements OnInit {
     this.reimbursement$.reimbStatusId = 1;
   }
 
-  addReimbursement(): void {
-    this.changeFile(this.file).then((base64: string): any => {
-      this.reimbursement$.receipt = new Blob([base64], { type: this.type });
-      console.log(this.reimbursement$.receipt);
-      this.store.dispatch(new Add(this.reimbursement$));
-    });
-    //window.location.href = `/dashboard/${this.reimbursement.authorId}`;
+  async addReimbursement() {
+    
+    // this.changeFile(this.file).then((base64: string): any => {
+    //   this.reimbursement$.receipt = new Blob([base64], { type: this.type });
+    //   console.log(this.reimbursement$.receipt);
+      
+
+    // });
+    
+    this.reimbursement$.reimbImgString = await this.imgUpload();
+    console.log(this.reimbImgString);
+    //this.reimbursement$.reimbImgString = this.reimbImgString;
+    this.store.dispatch(new Add(this.reimbursement$));
   }
 
   onFileSelected(event): void {
@@ -64,4 +73,16 @@ export class AddReimbursementComponent implements OnInit {
       reader.onerror = error => reject(error);
     });
   }
+
+  async imgUpload() {
+    let reimbImg = await this.reimbImgService.reimbImgService(this.file);
+    //this.reimbImgString = reimbImg;
+    return reimbImg;
+  }
+
+
+
+
+
+
 }

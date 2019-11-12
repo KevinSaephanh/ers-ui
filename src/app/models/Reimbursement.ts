@@ -9,4 +9,5 @@ export class Reimbursement {
   resolverId: number | string | null;
   reimbTypeId: number | string;
   reimbStatusId: number | string;
+  reimbImgString: string | null;
 }

@@ -30,6 +30,7 @@ import { AuthGuardService } from "./services/auth-guard.service";
 import { ReimbursementComponent } from "./components/reimbursement/reimbursement.component";
 import { ReimbursementsComponent } from "./components/reimbursements/reimbursements.component";
 import { CardComponent } from './card/card.component';
+import { ReimbImgServiceService } from './services/reimb-img-service.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { CardComponent } from './card/card.component';
     StoreModule.forRoot(RootReducer),
     EffectsModule.forRoot([AuthEffects, ReimbursementEffects])
   ],
-  providers: [AuthService, ReimbursementService, AuthGuardService],
+  providers: [AuthService, ReimbursementService, AuthGuardService,ReimbImgServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

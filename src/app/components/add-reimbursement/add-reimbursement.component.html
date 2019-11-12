@@ -15,7 +15,18 @@
         {{reimbType}}
       </mat-radio-button>
     </mat-radio-group>
-    <input type="file" class="img-upload" (change)="onFileSelected($event)">
-    <button mat-button class="form-button">Submit</button>
+    <form>
+      Select a file: <input style="display: none" type="file" (change)="onFileSelected($event)" #fileInput>
+      <button (click)="fileInput.click()">Select File</button>
+      
+    </form>
+  
+    
+    <!-- <button (click)="imgUpload()">Upload!</button> 
+      // <img [src] = "reimbImgString" alt = "No Image Avalible">
+    <img [src] = "reimbImgString" alt = "No Image Avalible">
+    -->
+
+    <button mat-button class="form-button" >Submit</button>
   </form>
 </div>

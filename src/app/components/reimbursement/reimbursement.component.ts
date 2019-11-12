@@ -35,5 +35,11 @@ export class ReimbursementComponent implements OnInit {
       this.reimbursement.reimbStatusId = "Approved";
     else if (this.reimbursement.reimbStatusId == 3)
       this.reimbursement.reimbStatusId = "Denied";
+
+    console.log(this.reimbursement.reimbImgString);
+  }
+
+  goToImage() {
+    window.location.href = this.reimbursement.reimbImgString;
   }
 }

@@ -6,9 +6,10 @@
     <p class="reimb-field">Description: {{reimbursement.description}}</p>
     <p class="reimb-field">Ticket Type: {{reimbursement.reimbTypeId}}</p>
     <p class="reimb-field">Status: {{reimbursement.reimbStatusId}}</p>
-    <p class="reimb-field">submit Date: {{reimbursement.submitted}}</p>
+    <p class="reimb-field">Submit Date: {{reimbursement.submitted ? reimbursement.submitted : "Not resolved"}}</p>
     <p class="reimb-field">Resolve Date: {{reimbursement.resolved ? reimbursement.resolved : "not resolved"}}</p>
     <p class="reimb-field">resolver: {{reimbursement.resolverId ? reimbursement.resolverId : "Not resolved yet"}}</p>
+    <a class="reimb-field" (click)="goToImage()">Receipt</a>
   </div>
   <div class="img-col">
     <img src="">
