@@ -29,10 +29,7 @@ export class DashboardComponent implements OnInit {
 
     // Update reimbursements
     this.getState.subscribe(state => {
-      if (state.reimbursements) {
-        this.reimbursements$ = state.reimbursements;
-        console.log(this.reimbursements$);
-      }
+      if (state.reimbursements) this.reimbursements$ = state.reimbursements;
     });
   }
 }

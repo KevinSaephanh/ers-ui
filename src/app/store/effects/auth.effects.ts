@@ -78,7 +78,7 @@ export class AuthEffects {
     ofType(AuthActionTypes.LOGIN_SUCCESS),
     tap(user => {
       const token = user.payload.user;
-      this.router.navigateByUrl(`/dashboard/${token.id}`);
+      window.location.href = `/dashboard/${token.id}`;
     })
   );
 

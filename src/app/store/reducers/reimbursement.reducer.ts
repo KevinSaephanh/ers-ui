@@ -19,11 +19,6 @@ export const ReimbursementReducer = (state = initState, action: any) => {
         reimbursements: action.payload,
         error: null
       };
-    case ReimbursementActionTypes.UPLOAD_SUCCESS:
-      return {
-        ...state,
-        error: null
-      };
     case ReimbursementActionTypes.GET_SUCCESS:
       return {
         ...state,
@@ -46,7 +41,6 @@ export const ReimbursementReducer = (state = initState, action: any) => {
       };
     case ReimbursementActionTypes.ADD_FAIL:
     case ReimbursementActionTypes.UPDATE_FAIL:
-    case ReimbursementActionTypes.UPLOAD_FAIL:
       return {
         ...state,
         error: action.payload

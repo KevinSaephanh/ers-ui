@@ -79,7 +79,6 @@ export class ReimbursementEffects {
     .map(reimb => {
       console.log(reimb);
       return new AddSuccess(reimb);
-      //return new UploadReceipt(reimb);
     })
     .catch(error => {
       console.log(error);

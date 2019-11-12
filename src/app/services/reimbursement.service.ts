@@ -25,14 +25,14 @@ export class ReimbursementService {
     return this.http.post<Reimbursement>(this.BASE_URL, reimb);
   }
 
-  uploadReceipt(reimb): Observable<any> {
-    return this.http.post<any>(
-      `${this.BASE_URL}/receipt/ticket=${reimb.id}`,
-      reimb.receipt
-    );
-  }
-
   update(reimb): Observable<Reimbursement> {
     return this.http.put<Reimbursement>(`${this.BASE_URL}/${reimb.id}`, reimb);
+  }
+
+  async uploadReceipt(reimbImg: File) {
+    const url = "http://localhost:8080/ers/SSSUPloader";
+    const data = await this.http.post(url, reimbImg).toPromise();
+
+    return JSON.parse(JSON.stringify(data));
   }
 }
