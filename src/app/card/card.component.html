@@ -1,0 +1,13 @@
+<li>
+    <p class="id">Reimbursment ID: {{reimbursement.id}}</p>
+    <p class="amount">Amount: {{reimbursement.amount}}</p>
+    <p class="submitted">Date Submitted: {{reimbursement.submitted.dayOfMonth}} {{reimbursement.submitted.month}}, {{reimbursement.submitted.year}}</p>
+    <p class="resolved" *ngIf="reimb.resolved"> Date Resolved: {{reimbursement.resolved.dayOfMonth}} {{reimbursement.resolved.month}}, {{reimbursement.resolved.year}</p>
+    <p class="resolved" *ngIf="!reimb.resolved"> Date Resolved: Unresolved </p>
+    <p class="description">Description: {{reimbursement.description}}</p>
+    <p class="receipt">Receipt: {{reimbursement.receipt}}</p>
+    <p class="authorId">Author ID: {{reimbursement.authorId}}</p>
+    <p class="resolverId">Resolver ID: {{reimbursement.resolverId}}</p>
+    <p class="reimbTypeId">Reimbursment Type: {{reimbursement.reimbTypeId}}</p>
+    <p class="reimbStatusId">Reimbursment Status: {{reimbursement.reimbStatusId}}</p>
+</li>
